@@ -3,16 +3,13 @@
 
 #######################################
 #                                     #
-# Vagrantfile for PIC dev env         #
+# Host Vagrantfile for PIC dev env    #
 # Leverages Docker.                   #
 #                                     #
 #######################################
 
 Vagrant.require_version ">= 1.8.0"
 VAGRANTFILE_API_VERSION = "2"
-
-ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
-DOCKER_HOST_VAGRANTFILE = './HostVagrantFile'
 
 time = Time.new
 timestamp = time.strftime("%Y%m%d")
@@ -26,18 +23,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # (prevents an NFS error on "vagrant up")
     #config.vm.synced_folder ".", "/vagrant", disabled: true
 
+    # Host name for VM
+    config.vm.hostname = "pic-docker-host"
+
+    # Skip checking for an updated Vagrant box
+    config.vm.box_check_update = false
+
+    # Always use Vagrant's default insecure key
+    config.ssh.insert_key = false
+
+    # Spin up a "host box" for use with the Docker provider
+    # and then provision it with Docker
+    config.vm.box = "ubuntu/xenial64"
+    config.vm.provision "docker"
+
     config.vm.define "pic_dev" do |pic_dev|
         pic_dev.vm.provider "docker" do |d|
-            # Config info
             d.build_dir = "."
             d.build_args = "-t=pic_dev:" + timestamp
             d.name = "pic_dev"
             d.remains_running = true
             d.cmd = ["/bin/bash"]
             d.create_args = ["-it"]
-
-            # Uncomment to use Vagrant-managed host, not yet supported.
-            # d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
         end
     end
 end
