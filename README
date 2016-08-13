@@ -1,0 +1,10 @@
+PIC dev README
+
+This porject is designed to descibe an environment for conducting
+PIC development.
+
+For the uninitiated, a PIC is a Programmable Interface Controller. These
+microcontrollers are electronic circuits that can be programmed to carry
+out a range of tasks. Although many types are available from several vendors,
+this project is solely interested in a set of PIC devices sold by MicroChip,
+currently the PIC16F84A and the PIC16F628A.
