@@ -26,9 +26,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # (prevents an NFS error on "vagrant up")
     #config.vm.synced_folder ".", "/vagrant", disabled: true
 
+    # Local src directory
+    config.vm.synced_folder "../src", "/src"
+
     config.vm.define "pic_dev" do |pic_dev|
         pic_dev.vm.provider "docker" do |d|
-            # Config info
             d.build_dir = "."
             d.build_args = "-t=pic_dev:" + timestamp
             d.name = "pic_dev"

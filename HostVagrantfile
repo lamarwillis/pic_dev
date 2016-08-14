@@ -37,14 +37,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.provision "docker"
 
-    config.vm.define "pic_dev" do |pic_dev|
-        pic_dev.vm.provider "docker" do |d|
-            d.build_dir = "."
-            d.build_args = "-t=pic_dev:" + timestamp
-            d.name = "pic_dev"
-            d.remains_running = true
-            d.cmd = ["/bin/bash"]
-            d.create_args = ["-it"]
-        end
     end
 end
