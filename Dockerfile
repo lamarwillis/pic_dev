@@ -7,6 +7,7 @@
 #######################################
 
 FROM ubuntu:16.04
+ARG user
 
 MAINTAINER Lamar Willis
 
@@ -21,6 +22,11 @@ RUN apt-get update && apt-get install -y \
   gpsim=0.29.* \
   picprog=1.9.* \
 && rm -rf /var/lib/apt/lists/*
+
+# Set up non-privledged account for user.
+# We use the 'shell form', for variable substitution on $user.
+RUN /usr/sbin/adduser --disabled-password --gecos '' $user
+USER $user
 
 # Run the bash shell for use/access.
 CMD ["/bin/bash"]

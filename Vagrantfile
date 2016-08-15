@@ -32,7 +32,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "pic_dev" do |pic_dev|
         pic_dev.vm.provider "docker" do |d|
             d.build_dir = "."
-            d.build_args = "-t=pic_dev:" + timestamp
+            d.build_args = ["-t=pic_dev:" + timestamp, \
+                            "--build-arg", "user=#{ENV['USER']}"]
             d.name = "pic_dev"
             d.remains_running = true
             d.cmd = ["/bin/bash"]
