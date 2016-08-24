@@ -29,5 +29,9 @@ RUN apt-get update && apt-get install -y \
 RUN /usr/sbin/adduser --disabled-password --gecos '' $user
 USER $user
 
+#Symbolic link hack for gpsim.
+RUN ln -s /usr/lib/x86_64-linux-gnu/libgtkextra-x11-3.0.so.8 \
+    /usr/lib/x86_64-linux-gnu/libgtkextra-x11-3.0.so.7
+
 # Run the bash shell for use/access.
 CMD ["/bin/bash"]

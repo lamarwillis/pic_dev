@@ -37,7 +37,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             d.name = "pic_dev"
             d.remains_running = true
             d.cmd = ["/bin/bash"]
-            d.create_args = ["-it"]
+            # "-it": interactive, pseudo-tty
+            # "-e": set environment variables
+            # "-u": set user id
+            # "-v": mount volume
+            d.create_args = ["-it", "-e", "DISPLAY=" + ENV['DISPLAY'],
+                             "-u", ENV['USER'],
+                             "-v", "/tmp/.X11-unix:/tmp/.X11-unix"]
 
             # Uncomment to use Vagrant-managed host, not yet supported.
             # d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
