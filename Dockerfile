@@ -20,6 +20,7 @@ MAINTAINER Lamar Willis
 RUN apt-get update && apt-get install -y \
   gputils=1.4.* \
   gpsim=0.29.* \
+  make=4.1* \
   picprog=1.9.* \
 && rm -rf /var/lib/apt/lists/*
 
