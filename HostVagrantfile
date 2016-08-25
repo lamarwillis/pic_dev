@@ -5,6 +5,10 @@
 #                                     #
 # Host Vagrantfile for PIC dev env    #
 # Leverages Docker.                   #
+# This should support host-agnostic   #
+#   operation.                        #
+#                                     #
+# *** NOT TESTED ***                  #
 #                                     #
 #######################################
 

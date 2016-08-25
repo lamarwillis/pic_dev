@@ -8,3 +8,11 @@ microcontrollers are electronic circuits that can be programmed to carry
 out a range of tasks. Although many types are available from several vendors,
 this project is solely interested in a set of PIC devices sold by MicroChip,
 currently the PIC16F84A and the PIC16F628A.
+
+This project currently consists of the following components:
+README: this file
+LICENSE: MIT License
+Dockerfile: defines am Ubuntu 16.04-based container for PIC development,
+    primarily consisting of gputils and gpsim
+Vagrantfile: provides Docker management, currently for Linux hosts
+HostVagrantfile: host-agnostic Docker management, not yet tested
